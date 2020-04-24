@@ -11,7 +11,7 @@
 #include <sys/time.h>
 #include <pwd.h> 
 
-static  const  char *dirpath = "/home/hipzi/haha"; 
+static  const  char *dirpath = "/home/hipzi/Documents"; 
 static  const  char *logpath = "/home/hipzi/fs.log";
 static  const  char *enkripsilog = "/home/hipzi/enkripsi.log";
 
@@ -440,6 +440,39 @@ static int xmp_rename(const char *from, const char *to)
         closedir(dp);
     }
 
+    if(strncmp("/encv2_", s_from, 7) == 0){
+    dp = opendir(ganti);
+
+    if (dp == NULL)
+    return -errno;
+
+            while ((de = readdir(dp)) != NULL) {
+
+                struct stat st;
+                memset(&st, 0, sizeof(st));
+
+                st.st_ino = de->d_ino;
+                st.st_mode = de->d_type << 12;
+
+                if (strcmp(de->d_name, ".") != 0 && strcmp(de->d_name, "..") != 0)
+                {
+                        memset(&temp, 0, sizeof(temp));
+
+                        get_filename_ext(de->d_name);
+                        memmove(temp, de->d_name, strlen(de->d_name)-strlen(ekstensi));
+                        dekripsi(temp);
+                        strcat(temp, ekstensi);
+
+                        sprintf(namalama,"%s/%s", ganti,de->d_name);
+                        sprintf(gantinama,"%s/%s", ganti,temp);
+                        rename(namalama, gantinama);
+                        printf("%s %s\n", namalama, gantinama);
+                }
+            }
+
+        closedir(dp);
+    }
+
     return 0;
 }
 
@@ -509,7 +542,12 @@ static int xmp_mkdir(const char *path, mode_t mode)
         fclose(fp);
     }
 
-    if(strncmp("/encv1_", temp_path, 7) == 0){
+
+    res = mkdir(fpath, mode);
+    if(res == -1)
+        return -errno;
+
+        if(strncmp("/encv1_", temp_path, 7) == 0){
     
     DIR *dp;
     struct dirent *de;  
@@ -528,7 +566,9 @@ static int xmp_mkdir(const char *path, mode_t mode)
                 st.st_mode = de->d_type << 12;
 
                 if (strcmp(de->d_name, ".") != 0 && strcmp(de->d_name, "..") != 0)
-                {
+                {       
+                        memset(&temp, 0, sizeof(temp));
+
                         strcpy(temp,de->d_name);
                         enkripsi(temp);
 
@@ -543,10 +583,6 @@ static int xmp_mkdir(const char *path, mode_t mode)
 
         closedir(dp);
     }
-
-    res = mkdir(fpath, mode);
-    if(res == -1)
-        return -errno;
 
     return 0;
 }  
@@ -1002,14 +1038,18 @@ static int xmp_mknod(const char *path, mode_t mode, dev_t rdev)
                 st.st_mode = de->d_type << 12;
 
                 if (strcmp(de->d_name, ".") != 0 && strcmp(de->d_name, "..") != 0)
-                {
-                        strcpy(temp,de->d_name);
+                {       
+                        memset(&temp, 0, sizeof(temp));
+
+                        get_filename_ext(de->d_name);
+                        memmove(temp, de->d_name, strlen(de->d_name)-strlen(ekstensi));
                         enkripsi(temp);
+                        strcat(temp, ekstensi);
 
                         sprintf(namalama,"%s/%s", fpath,de->d_name);
                         sprintf(gantinama,"%s/%s", fpath,temp);
                         rename(namalama, gantinama);
-                        printf("%s %s\n", namalama,gantinama);
+                        printf("%s %s\n", namalama, gantinama);
                 }
             }
 
