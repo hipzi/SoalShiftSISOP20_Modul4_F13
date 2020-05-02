@@ -115,7 +115,7 @@ off_t offset, struct fuse_file_info *fi)
     time_t t = time(NULL); 
     struct tm tm = *localtime(&t);
 
-    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", tm.tm_year + 1900, 
+    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", (tm.tm_year + 1900) % 100, 
     tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec); 
 
     sprintf(satu, "%s::%s", level, waktu); 
@@ -243,7 +243,7 @@ struct fuse_file_info *fi)
     time_t t = time(NULL); 
     struct tm tm = *localtime(&t);
 
-    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", tm.tm_year + 1900, 
+    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", (tm.tm_year + 1900) % 100, 
     tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec); 
 
     sprintf(satu, "%s::%s", level, waktu); 
@@ -306,7 +306,7 @@ static int xmp_write(const char *path, const char *buf, size_t size,off_t offset
     time_t t = time(NULL); 
     struct tm tm = *localtime(&t);
 
-    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", tm.tm_year + 1900, 
+    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", (tm.tm_year + 1900) % 100, 
     tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec); 
 
     sprintf(satu, "%s::%s", level, waktu); 
@@ -364,7 +364,7 @@ static int xmp_rename(const char *from, const char *to)
     time_t t = time(NULL); 
     struct tm tm = *localtime(&t);
 
-    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", tm.tm_year + 1900, 
+    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", (tm.tm_year + 1900) % 100, 
     tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec); 
 
     sprintf(satu, "%s::%s", level, waktu); 
@@ -499,7 +499,7 @@ static int xmp_mkdir(const char *path, mode_t mode)
     time_t t = time(NULL); 
     struct tm tm = *localtime(&t);
 
-    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", tm.tm_year + 1900, 
+    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", (tm.tm_year + 1900) % 100, 
     tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec); 
 
     sprintf(satu, "%s::%s", level, waktu); 
@@ -604,7 +604,7 @@ static int xmp_rmdir(const char *path)
     time_t t = time(NULL); 
     struct tm tm = *localtime(&t);
 
-    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", tm.tm_year + 1900, 
+    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", (tm.tm_year + 1900) % 100, 
     tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec); 
 
     sprintf(satu, "%s::%s", level, waktu); 
@@ -654,7 +654,7 @@ static int xmp_create(const char* path, mode_t mode, struct fuse_file_info* fi)
     time_t t = time(NULL); 
     struct tm tm = *localtime(&t);
 
-    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", tm.tm_year + 1900, 
+    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", (tm.tm_year + 1900) % 100, 
     tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec); 
 
     sprintf(satu, "%s::%s", level, waktu); 
@@ -707,7 +707,7 @@ static int xmp_unlink(const char *path)
     time_t t = time(NULL); 
     struct tm tm = *localtime(&t);
 
-    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", tm.tm_year + 1900, 
+    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", (tm.tm_year + 1900) % 100, 
     tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec); 
 
     sprintf(satu, "%s::%s", level, waktu); 
@@ -756,7 +756,7 @@ static int xmp_truncate(const char *path, off_t size)
     time_t t = time(NULL); 
     struct tm tm = *localtime(&t);
 
-    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", tm.tm_year + 1900, 
+    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", (tm.tm_year + 1900) % 100, 
     tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec); 
 
     sprintf(satu, "%s::%s", level, waktu); 
@@ -802,7 +802,7 @@ static int xmp_utimens(const char *path, const struct timespec ts[2])
     time_t t = time(NULL); 
     struct tm tm = *localtime(&t);
 
-    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", tm.tm_year + 1900, 
+    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", (tm.tm_year + 1900) % 100, 
     tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec); 
 
     sprintf(satu, "%s::%s", level, waktu); 
@@ -855,7 +855,7 @@ static int xmp_chmod(const char *path, mode_t mode)
     time_t t = time(NULL); 
     struct tm tm = *localtime(&t);
 
-    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", tm.tm_year + 1900, 
+    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", (tm.tm_year + 1900) % 100, 
     tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec); 
 
     sprintf(satu, "%s::%s", level, waktu); 
@@ -903,7 +903,7 @@ static int xmp_chown(const char *path, uid_t uid, gid_t gid)
     time_t t = time(NULL); 
     struct tm tm = *localtime(&t);
 
-    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", tm.tm_year + 1900, 
+    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", (tm.tm_year + 1900) % 100, 
     tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec); 
 
     sprintf(satu, "%s::%s", level, waktu); 
@@ -948,7 +948,7 @@ static int xmp_open(const char *path, struct fuse_file_info *fi)
     time_t t = time(NULL); 
     struct tm tm = *localtime(&t);
 
-    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", tm.tm_year + 1900, 
+    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", (tm.tm_year + 1900) % 100, 
     tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec); 
 
     sprintf(satu, "%s::%s", level, waktu); 
@@ -993,7 +993,7 @@ static int xmp_mknod(const char *path, mode_t mode, dev_t rdev)
     time_t t = time(NULL); 
     struct tm tm = *localtime(&t);
 
-    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", tm.tm_year + 1900, 
+    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", (tm.tm_year + 1900) % 100, 
     tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec); 
 
     sprintf(satu, "%s::%s", level, waktu); 
@@ -1076,7 +1076,7 @@ static int xmp_statfs(const char *path, struct statvfs *stbuf)
     time_t t = time(NULL); 
     struct tm tm = *localtime(&t);
 
-    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", tm.tm_year + 1900, 
+    sprintf(waktu, "%02d%02d%02d-%02d:%02d:%02d", (tm.tm_year + 1900) % 100, 
     tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec); 
 
     sprintf(satu, "%s::%s", level, waktu); 
