@@ -146,22 +146,22 @@ Fungsi yang saja yang dipakai pada pada fuse :
 <p></p>
 
     static struct fuse_operations xmp_oper = {
-	.getattr    = xmp_getattr,
-	.readdir    = xmp_readdir,
-	.read       = xmp_read,
+	.getattr    	= xmp_getattr,
+	.readdir    	= xmp_readdir,
+	.read       	= xmp_read,
 	.write		= xmp_write,
 	.rename		= xmp_rename,
 	.mkdir		= xmp_mkdir,
-	.rmdir      = xmp_rmdir,
-	.create     = xmp_create,
-	.unlink     = xmp_unlink,
-	.truncate   = xmp_truncate,
-	.utimens    = xmp_utimens,
-	.chmod      = xmp_chmod,
-	.chown      = xmp_chown,
+	.rmdir      	= xmp_rmdir,
+	.create     	= xmp_create,
+	.unlink     	= xmp_unlink,
+	.truncate   	= xmp_truncate,
+	.utimens    	= xmp_utimens,
+	.chmod      	= xmp_chmod,
+	.chown      	= xmp_chown,
 	.open		= xmp_open,
-	.mknod      = xmp_mknod,
-	.statfs     = xmp_statfs,
+	.mknod      	= xmp_mknod,
+	.statfs     	= xmp_statfs,
     };
 <p></p>
 
